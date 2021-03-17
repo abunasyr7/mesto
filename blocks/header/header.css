@@ -1,0 +1,19 @@
+.header {
+    display: flex;
+    margin: 0 auto;
+    flex-direction: column;
+    margin-bottom: 35px;
+    max-width: 880px;
+}
+
+@media screen and (max-width: 870px) {
+    .header {
+        max-width: 80%;
+    }
+}
+
+@media screen and (max-width: 690px) {
+    .header {
+        max-width: 100%;
+    }
+}
