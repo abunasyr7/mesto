@@ -14,54 +14,56 @@
             <img src="./images/Line.svg" alt="Линия" class="header__line">
         </header>
         <section class="profile">
-            <div class="profile__avatar"></div>
-            <div class="profile__info">
-                <h2 class="profile__info-name">Жак-Ив Кусто</h2>
-                <p class="profile__info-text">Исследователь океана</p>
+            <div class="profile__info-section">
+                <div class="profile__avatar"></div>
+                <div class="profile__info">
+                    <h2 class="profile__info-name">Жак-Ив Кусто</h2>
+                    <p class="profile__info-text">Исследователь океана</p>
+                </div>
+                <button class="profile__edit-button popup-link" type="button"></button>
             </div>
-            <div class="profile__edit-button"></div>
-            <div class="profile__add-button"></div>
+            <button class="profile__add-button"></button>
         </section>
         <section class="elements">
             <div class="element">
-                <img src="./images/kirill-pershin-1088404-unsplash.svg" alt="Карачаевск">
+                <img src="./images/kirill-pershin-1088404-unsplash.png" alt="Карачаевск" class="element__image">
                 <div class="element__name">
                     <h2 class="element__text">Карачаевск</h2>
                     <img src="./images/Group.svg" alt="Like">
                 </div>
             </div>
             <div class="element">
-                <img src="./images/kirill-pershin-1404681-unsplash.svg" alt="Карачаевск">
+                <img src="./images/kirill-pershin-1404681-unsplash.png" alt="Карачаевск" class="element__image">
                 <div class="element__name">
                     <h2 class="element__text">Гора Эльбрус</h2>
                     <img src="./images/Group.svg" alt="Like">
                 </div>
             </div>
             <div class="element">
-                <img src="./images/kirill-pershin-1556355-unsplash.svg" alt="Карачаевск">
+                <img src="./images/kirill-pershin-1556355-unsplash.png" alt="Карачаевск" class="element__image">
                 <div class="element__name">
                     <h2 class="element__text">Домбай</h2>
                     <img src="./images/Group.svg" alt="Like">
                 </div>
             </div>
             <div class="element">
-                <img src="./images/kirill-pershin-1404681-unsplash.svg" alt="Карачаевск">
+                <img src="./images/kirill-pershin-1404681-unsplash.png" alt="Карачаевск" class="element__image">
                 <div class="element__name">
                     <h2 class="element__text">Гора Эльбрус</h2>
                     <img src="./images/Group.svg" alt="Like">
                 </div>
             </div>
             <div class="element">
-                <img src="./images/kirill-pershin-1556355-unsplash.svg" alt="Карачаевск">
+                <img src="./images/kirill-pershin-1556355-unsplash.png" alt="Карачаевск" class="element__image">
                 <div class="element__name">
                     <h2 class="element__text">Домбай</h2>
                     <img src="./images/Group.svg" alt="Like">
                 </div>
             </div>
             <div class="element">
-                <img src="./images/kirill-pershin-1088404-unsplash.svg" alt="Карачаевск">
+                <img src="./images/kirill-pershin-1088404-unsplash.png" alt="Карачаевск" class="element__image">
                 <div class="element__name">
-                    <h2 class="element__text">Карачаево-Ч...</h2>
+                    <h2 class="element__text">Карачаево-Черкессия</h2>
                     <img src="./images/Group.svg" alt="Like">
                 </div>
             </div>
@@ -70,5 +72,17 @@
             <p class="footer__text">© 2020 Mesto Russia</p>
         </footer>
     </div>
+    <div class="popup">
+        <div class="popup__body">
+            <div class="popup__content">
+                <button class="popup__close close-popup">X</button>
+                <h1 class="popup__title">Редактировать профиль</h1>
+                <p class="popup__name">Жак-Ив Кусто</p>
+                <p class="popup__description">Исследователь океана</p>
+                <button class="popup__save" type="submit">Сохранить</button>
+            </div>
+        </div>
+    </div>
+    <script src="./script.js"></script>
 </body>
 </html>

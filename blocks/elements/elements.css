@@ -20,3 +20,11 @@
         gap: 20px;
     }
 }
+
+@media screen and (max-width: 500px) {
+    .elements {
+        display: flex;
+        flex-direction: column;
+        max-width: 100%;
+    }
+}

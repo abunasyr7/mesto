@@ -1,0 +1,39 @@
+
+
+.popup {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color:rgba(0, 0, 0, 0.822);
+    top: 0;
+    left: 0;
+}
+
+.popup__body {
+    min-height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 30px 10px;
+    }
+.popup__content {
+    background-color: white;
+    color: #000;
+    width: 430px;
+    height: 330px;
+}
+
+.popup__title {
+    font-weight: 900;
+    font-size: 24px;
+    line-height: 29px;
+}
+
+.popup__text {
+
+}
+
+.popup__close {
+    transform: rotate(-45deg);
+    border: none;
+}
