@@ -12,6 +12,10 @@
     margin: 0 auto;
 }
 
+.popup__close:hover {
+    opacity: 0.6;
+}
+
 @media screen and (max-width: 500px) {
     .popup__close {
         left: 85%;
