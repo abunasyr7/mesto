@@ -13,6 +13,7 @@
     opacity: 0.6;
 }
 
-.element__like:active {
+.element__like svg:active { 
     background: black;
+    fill: black;
 }

@@ -18,14 +18,22 @@ function closePopup(e) {
     popup.classList.remove('popup_opened');
 }
 
+function saveClosePopup (e) {
+    function savePopup (e) {
+        profileInfoName.textContent = popupName.value;
+        profileInfoText.textContent = popupDescription.value;
+    }
+
+    function closePopup(e) {
+        popup.classList.remove('popup_opened');
+    }
+    
+    savePopup(e);
+    closePopup(e);
+}
 
 popupName.value = profileInfoName.textContent;
 popupDescription.value = profileInfoText.textContent;
 
 
-popupSave.addEventListener('click', savePopup);
-
-function savePopup () {
-    profileInfoName.textContent = popupName.value;
-    profileInfoText.textContent = popupDescription.value;
-}
+popupSave.addEventListener('click', saveClosePopup);
