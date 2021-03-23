@@ -1,4 +1,4 @@
-.elements__element {
+.element {
     background-color: white;
     height: 360px;
     max-width: 282px;
@@ -9,7 +9,7 @@
 }
 
 @media screen and (max-width: 870px) {
-    .elements__element {
+    .element {
         margin: 0 auto;
     }
 }
