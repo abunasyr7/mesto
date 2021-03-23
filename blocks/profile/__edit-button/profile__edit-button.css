@@ -15,7 +15,9 @@
 
 @media screen and (max-width: 500px) { 
     .profile__edit-button {
-        margin-top: -35px;
-        align-self: center;
+        margin-top: 10px;
+        align-self: flex-start;
+        width: 19px;
+        height: 19px;
     }
 }

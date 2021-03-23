@@ -1,19 +1,15 @@
-.element__like {
+.elements__element__like {
     padding: 0;
     width: 22px;
     height: 19px;
-    background-image: url(../../../images/Group.svg);
+    background-image: url(../../../../images/Group.svg);
     cursor: pointer;
     border: none;
     align-self: center;
     background-color: transparent;
 }
 
-.element__like:hover {
+.elements__element__like:hover {
     opacity: 0.6;
 }
 
-.element__like svg:active { 
-    background: black;
-    fill: black;
-}

@@ -13,15 +13,13 @@
 
 @media screen and (max-width:870px) {
     .elements {
-        display: grid;
         grid-template-columns: repeat(2, 1fr);
         grid-template-rows: repeat(3, 1fr);
-        max-width: 80%;
-        gap: 20px;
+        max-width: 690px;
     }
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 690px) {
     .elements {
         display: flex;
         flex-direction: column;

@@ -12,6 +12,8 @@ popupClose.addEventListener('click', closePopup);
 
 function openPopup(e) {
     popup.classList.add('popup_opened');
+    popupName.value = profileInfoName.textContent;
+    popupDescription.value = profileInfoText.textContent;
 }
 
 function closePopup(e) {
@@ -19,21 +21,9 @@ function closePopup(e) {
 }
 
 function saveClosePopup (e) {
-    function savePopup (e) {
-        profileInfoName.textContent = popupName.value;
-        profileInfoText.textContent = popupDescription.value;
-    }
-
-    function closePopup(e) {
-        popup.classList.remove('popup_opened');
-    }
-    
-    savePopup(e);
+    profileInfoName.textContent = popupName.value;
+    profileInfoText.textContent = popupDescription.value;
     closePopup(e);
 }
-
-popupName.value = profileInfoName.textContent;
-popupDescription.value = profileInfoText.textContent;
-
 
 popupSave.addEventListener('click', saveClosePopup);
