@@ -3,4 +3,7 @@
     margin: 0 auto;
     justify-content: space-between;
     max-width: 248px;
+    align-items: center;
+    margin-top: 25px;
+    margin-bottom: 31px;
 }
