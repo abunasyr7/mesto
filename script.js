@@ -11,13 +11,13 @@ profileEditButton.addEventListener('click', openPopup);
 popupClose.addEventListener('click', closePopup);
 
 function openPopup(e) {
-    popup.classList.add('popup_opened');
+    popup.classList.add('popup_open');
     popupName.value = profileInfoName.textContent;
     popupDescription.value = profileInfoText.textContent;
 }
 
 function closePopup(e) {
-    popup.classList.remove('popup_opened');
+    popup.classList.remove('popup_open');
 }
 
 function saveClosePopup (e) {
