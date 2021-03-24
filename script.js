@@ -7,9 +7,6 @@ let popupName = document.querySelector('.popup__input_type_name');
 let popupJob = document.querySelector('.popup__input_type_job');
 let popupSave = document.querySelector('.popup__save');
 
-profileEditButton.addEventListener('click', openPopup);
-popupClose.addEventListener('click', closePopup);
-
 function openPopup(e) {
     popup.classList.add('popup_open');
     popupName.value = profileInfoName.textContent;
@@ -21,10 +18,12 @@ function closePopup(e) {
 }
 
 function saveClosePopup (e) {
-    evt.preventDefault();
+    e.preventDefault();
     profileInfoName.textContent = popupName.value;
     profileInfoText.textContent = popupJob.value;
     closePopup(e);
 }
 
 popupSave.addEventListener('click', saveClosePopup);
+profileEditButton.addEventListener('click', openPopup);
+popupClose.addEventListener('click', closePopup);
