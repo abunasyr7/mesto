@@ -31,6 +31,7 @@
                     <h2 class="element__text">Карачаевск</h2>
                     <button class="element__like" type="button"></button>
                 </div>
+                <button class="element__delete" type="button"></button>
             </div>
         </template>
         <footer class="footer">
@@ -56,11 +57,11 @@
             <div class="popup__content">
                 <button class="popup__close close-popup" type="button"></button>
                 <h2 class="popup__title">Новое место</h2>
-                <form action="popup" name="edit">
+                <form action="popup" name="edit" class="popup__form_type_place">
                     <input type="text" name="place-input" class="popup__input popup__input_type_place" placeholder="Название">
                     <input type="text" name="image-input" class="popup__input popup__input_type_image" placeholder="Ссылка на картинку">
                 </form>
-                <button class="popup__save" type="submit">Сохранить</button>
+                <button class="popup__save popup_insert" type="submit">Сохранить</button>
             </div>
         </div>
     </div>
