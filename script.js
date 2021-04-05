@@ -11,7 +11,7 @@ let elementAddButton = document.querySelector('.profile__add-button');
 let popupPlace = document.querySelector('.popup_place');
 let popupPlaceClose = popupPlace.querySelector('.popup__close');
 let profileAddButton = document.querySelector('.profile__add-button');
-let popupInsert = document.querySelector('.popup__button_type_insert');
+let popupInsert = document.querySelector('.popup__insert');
 let popupImage = document.querySelector('.popup-image');
 let popupImageClose = popupImage.querySelector('.popup__close');
 
