@@ -13,7 +13,7 @@ let popupPlaceClose = popupPlace.querySelector('.popup__close');
 let profileAddButton = document.querySelector('.profile__add-button');
 let popupInsert = document.querySelector('.popup_insert');
 let popupImage = document.querySelector('.popup-image');
-let elementImage = document.querySelector('.element__image');
+let popupImageClose = popupImage.querySelector('.popup__close');
 
 const popupFormTypePlace = document.querySelector('.popup__form_type_place');
 const popupInputTypePlace = popupFormTypePlace.querySelector('.popup__input_type_place');
@@ -52,7 +52,9 @@ function openPopupAdd(e) {
   popupPlace.classList.add('popup_open')
 }
 
-
+function closePopupImage (e) {
+  popupImage.classList.remove('popup_open')
+}
 
 
 popupSave.addEventListener('click', saveClosePopup);
@@ -60,6 +62,7 @@ profileEditButton.addEventListener('click', openPopup);
 popupClose.addEventListener('click', closePopup);
 elementAddButton.addEventListener('click',openPopupAdd);
 popupPlaceClose.addEventListener('click',closePopupPlace);
+popupImageClose.addEventListener('click', closePopupImage);
 
 function createCard(link, name) {
   const elementTemplate = elementsTemplate.querySelector('.element').cloneNode(true);
@@ -81,17 +84,17 @@ function addElement(element) {
   createdCard.querySelector('.element__like').addEventListener('click', (e) => {
     e.target.classList.toggle('element__like_type_active')
   })
-  createdCard.addEventListener('click', openPopupImage);
-  // likeButton();
+
+  createdCard.querySelector('.element__image').addEventListener('click', (e) => {
+    popupImage.classList.add('popup_open');
+    picture = document.querySelector('.popup-image__picture');
+    picture.src = element.link;
+    const caption = document.querySelector('.popup-image__caption');
+    caption.textContent = element.name  
+  })
+  
 } 
 
-function openPopupImage () {
-  popupImage.classList.add('.popup-image_open');
-  const image = document.querySelector('.popup-image__fullscreen');
-  image.src = element.link;
-  const caption = document.querySelector('.popup-image__caption');
-  caption.src = element.name;
-}
 
 const initialCards = [
     {
@@ -131,3 +134,8 @@ function formSubmitHandler(e) {
 };
 
 popupInsert.addEventListener('click', formSubmitHandler);
+
+
+// document.querySelector('.element__image').addEventListener('click', function(e) {
+//   console.log('Hello, World')
+// })
