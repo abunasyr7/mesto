@@ -11,11 +11,11 @@ let elementAddButton = document.querySelector('.profile__add-button');
 let popupPlace = document.querySelector('.popup_place');
 let popupPlaceClose = popupPlace.querySelector('.popup__close');
 let profileAddButton = document.querySelector('.profile__add-button');
-let popupInsert = document.querySelector('.popup_insert');
+let popupInsert = document.querySelector('.popup__button_type_insert');
 let popupImage = document.querySelector('.popup-image');
 let popupImageClose = popupImage.querySelector('.popup__close');
 
-const popupFormTypePlace = document.querySelector('.popup__form_type_place');
+const popupFormTypePlace = document.querySelector('.popup__place');
 const popupInputTypePlace = popupFormTypePlace.querySelector('.popup__input_type_place');
 const popupInputTypeImage = popupFormTypePlace.querySelector('.popup__input_type_image');
 const elementsTemplate = document.querySelector('.elements-container').content;
@@ -129,8 +129,8 @@ function formSubmitHandler(e) {
   e.preventDefault();
   inputValue = popupInputTypePlace.value;
   inputImage = popupInputTypeImage.value;
-  renderedCard = renderCard(inputImage, inputValue)
-  elements.prepend(renderedCard);
+  createdCard = createCard(inputImage, inputValue)
+  elements.prepend(createdCard);
 };
 
 popupInsert.addEventListener('click', formSubmitHandler);
