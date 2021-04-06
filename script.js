@@ -2,6 +2,7 @@ const popup = document.querySelector(".popup");
 const profileEditButton = document.querySelector(".profile__edit-button");
 const popupClose = document.querySelector(".popup__close");
 const profileInfoName = document.querySelector(".profile__info-name");
+const popupForm = document.querySelector('.popup__form');
 const profileInfoText = document.querySelector(".profile__info-text");
 const popupName = document.querySelector(".popup__input_type_name");
 const popupJob = document.querySelector(".popup__input_type_job");
@@ -26,46 +27,43 @@ const elementsTemplate = document.querySelector(".elements-container").content;
 
 function openPopup(e) {
   popup.classList.add("popup_open");
+
+}
+
+
+function openModal(modal) {
+  modal.classList.add('popup_open')
+}
+
+function closeModal(modal) {
+  modal.classList.remove('popup_open')
+}
+
+function openProfileModal() {
+  openModal(popup)
   popupName.value = profileInfoName.textContent;
   popupJob.value = profileInfoText.textContent;
 }
 
-// function deconsteElement() {
-//   const delteButton = elementsTemplate.querySelector('.element__deconste');
-//   deconsteButton.addEventListener('cick', () =>{
-//     elementsTemplate.remove();
-//   })
-// }
-
-function closePopup(e) {
-  popup.classList.remove("popup_open");
-}
-
-function closePopupPlace(e) {
-  popupPlace.classList.remove("popup_open");
-}
-
-function saveClosePopup(e) {
+function submitProfileForm(e) {
   e.preventDefault();
   profileInfoName.textContent = popupName.value;
   profileInfoText.textContent = popupJob.value;
   closePopup(e);
 }
 
-function openPopupAdd(e) {
-  popupPlace.classList.add("popup_open");
-}
 
 function closePopupImage(e) {
   popupImage.classList.remove("popup_open");
 }
 
-popupSave.addEventListener("submit", saveClosePopup);
-profileEditButton.addEventListener("submit", openPopup);
-popupClose.addEventListener("click", closePopup);
-elementAddButton.addEventListener("submit", openPopupAdd);
-popupPlaceClose.addEventListener("click", closePopupPlace);
-popupImageClose.addEventListener("click", closePopupImage);
+
+profileEditButton.addEventListener("click", openProfileModal);
+elementAddButton.addEventListener("click", () => openModal(popupPlace));
+popupPlaceClose.addEventListener("click", () => closeModal(popupPlace));
+popupImageClose.addEventListener("click", () => closeModal(popupImage));
+popupClose.addEventListener("click", () => closeModal(popup));
+popupForm.addEventListener('submit', submitProfileForm);
 
 function createCard(link, name) {
   const elementTemplate = elementsTemplate
@@ -81,17 +79,17 @@ function addCard(element) {
   const createdCard = createCard(element.link, element.name);
   elements.append(createdCard);
   createdCard
-    .querySelector(".element__deconste")
-    .addEventListener("submit", function (e) {
+    .querySelector(".element__delete")
+    .addEventListener("click", function (e) {
       e.target.closest(".element").remove();
     });
-  createdCard.querySelector(".element__like").addEventListener("submit", (e) => {
+  createdCard.querySelector(".element__like").addEventListener("click", (e) => {
     e.target.classList.toggle("element__like_type_active");
   });
 
   createdCard
     .querySelector(".element__image")
-    .addEventListener("submit", (e) => {
+    .addEventListener("click", (e) => {
       popupImage.classList.add("popup_open");
       picture = document.querySelector(".popup-image__picture");
       picture.src = element.link;
@@ -135,12 +133,12 @@ const initialCards = [
 
 initialCards.forEach(addCard);
 
-function formSubmitHandler(e) {
+function submitCardForm(e) {
   e.preventDefault();
   inputValue = popupInputTypePlace.value;
   inputImage = popupInputTypeImage.value;
-  createdCard = createCard(inputImage, inputValue);
+  const createdCard = createCard(inputImage, inputValue);
   elements.prepend(createdCard);
 }
 
-popupInsert.addEventListener("submit", formSubmitHandler);
+popupInsert.addEventListener("submit", submitCardForm);
