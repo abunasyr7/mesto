@@ -2,7 +2,7 @@ const popup = document.querySelector(".popup");
 const profileEditButton = document.querySelector(".profile__edit-button");
 const popupClose = document.querySelector(".popup__close");
 const profileInfoName = document.querySelector(".profile__info-name");
-const popupForm = document.querySelector('.popup__form');
+const popupForm = document.querySelector(".popup__form");
 const profileInfoText = document.querySelector(".profile__info-text");
 const popupName = document.querySelector(".popup__input_type_name");
 const popupJob = document.querySelector(".popup__input_type_job");
@@ -25,22 +25,17 @@ const popupInputTypeImage = popupFormTypePlace.querySelector(
 );
 const elementsTemplate = document.querySelector(".elements-container").content;
 
-function openPopup(e) {
-  popup.classList.add("popup_open");
-
-}
-
 
 function openModal(modal) {
-  modal.classList.add('popup_open')
+  modal.classList.add("popup_open");
 }
 
 function closeModal(modal) {
-  modal.classList.remove('popup_open')
+  modal.classList.remove("popup_open");
 }
 
 function openProfileModal() {
-  openModal(popup)
+  openModal(popup);
   popupName.value = profileInfoName.textContent;
   popupJob.value = profileInfoText.textContent;
 }
@@ -49,21 +44,15 @@ function submitProfileForm(e) {
   e.preventDefault();
   profileInfoName.textContent = popupName.value;
   profileInfoText.textContent = popupJob.value;
-  closePopup(e);
+  closeModal(popup);
 }
-
-
-function closePopupImage(e) {
-  popupImage.classList.remove("popup_open");
-}
-
 
 profileEditButton.addEventListener("click", openProfileModal);
 elementAddButton.addEventListener("click", () => openModal(popupPlace));
 popupPlaceClose.addEventListener("click", () => closeModal(popupPlace));
 popupImageClose.addEventListener("click", () => closeModal(popupImage));
 popupClose.addEventListener("click", () => closeModal(popup));
-popupForm.addEventListener('submit', submitProfileForm);
+popupForm.addEventListener("submit", submitProfileForm);
 
 function createCard(link, name) {
   const elementTemplate = elementsTemplate
