@@ -8,18 +8,17 @@ const popupName = document.querySelector(".popup__input_type_name");
 const popupJob = document.querySelector(".popup__input_type_job");
 const elements = document.querySelector(".elements");
 const elementAddButton = document.querySelector(".profile__add-button");
-const popupPlace = document.querySelector(".popup_place");
+const popupPlace = document.querySelector(".popup-place");
 const popupPlaceClose = popupPlace.querySelector(".popup__close");
 const profileAddButton = document.querySelector(".profile__add-button");
-const popupInsert = document.querySelector(".popup__insert");
 const popupImage = document.querySelector(".popup-image");
 const popupImageClose = popupImage.querySelector(".popup__close");
 
-const popupFormTypePlace = document.querySelector(".popup__place");
-const popupInputTypePlace = popupFormTypePlace.querySelector(
+const popupPlaceForm = document.querySelector(".popup-place__form");
+const popupInputTypePlace = popupPlaceForm.querySelector(
   ".popup__input_type_place"
 );
-const popupInputTypeImage = popupFormTypePlace.querySelector(
+const popupInputTypeImage = popupPlaceForm.querySelector(
   ".popup__input_type_image"
 );
 const elementsTemplate = document.querySelector(".elements-container").content;
@@ -51,7 +50,7 @@ function submitCardForm(e) {
   inputImage = popupInputTypeImage.value;
   const createdCard = createCard(inputImage, inputValue);
   elements.prepend(createdCard);
-  closeModal(popup);
+  closeModal(popupPlace);
 }
 
 profileEditButton.addEventListener("click", openProfileModal);
@@ -60,7 +59,7 @@ popupPlaceClose.addEventListener("click", () => closeModal(popupPlace));
 popupImageClose.addEventListener("click", () => closeModal(popupImage));
 popupClose.addEventListener("click", () => closeModal(popup));
 popupForm.addEventListener("submit", submitProfileForm);
-popupInsert.addEventListener("submit", submitCardForm);
+popupPlaceForm.addEventListener("submit", submitCardForm);
 
 function createCard(link, name) {
   const elementTemplate = elementsTemplate
