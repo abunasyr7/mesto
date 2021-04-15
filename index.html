@@ -1,16 +1,18 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./pages/index.css">
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./pages/index.css" />
     <title>Mesto</title>
 </head>
+
 <body class="body">
     <div class="page">
         <header class="header">
-            <img src="./images/logo.svg" alt="Логотип" class="header__logo">
+            <img src="./images/logo.svg" alt="Логотип" class="header__logo" />
         </header>
         <section class="profile">
             <div class="profile__info-section">
@@ -26,7 +28,7 @@
         <div class="elements"></div>
         <template class="elements-container">
             <div class="element">
-                <img src="./images/kirill-pershin-1088404-unsplash.png" alt="Карачаевск" class="element__image">
+                <img src="./images/kirill-pershin-1088404-unsplash.png" alt="Карачаевск" class="element__image" />
                 <div class="element__name">
                     <h2 class="element__text">Карачаевск</h2>
                     <button class="element__like" type="button"></button>
@@ -36,17 +38,25 @@
         </template>
         <footer class="footer">
             <p class="footer__text">© 2020 Mesto Russia</p>
-            </footer>
-        </div>
+        </footer>
+    </div>
     <div class="popup popup_profile">
         <div class="popup__body">
             <div class="popup__content">
                 <button class="popup__close close-popup" type="button"></button>
                 <h2 class="popup__title">Редактировать профиль</h2>
-                <form action="popup" name="edit" class="popup__form">
-                    <input type="text" name="name-input" class="popup__input popup__input_type_name">
-                    <input type="text" name="job-input" class="popup__input popup__input_type_job">
-                    <button class="popup__save" type="submit">Сохранить</button>
+                <form action="popup" name="edit" class="form popup__form" novalidate>
+                    <section class="form__section">
+                        <input type="text" name="name-input" class="form__input popup__input popup__input_type_name"
+                            minlength="2" maxlength="40" />
+                        <span class="form__input-error"></span>
+                    </section>
+                    <section class="form__section">
+                        <input type="text" name="job-input" class="form__input popup__input popup__input_type_job"
+                            minlength="2" maxlength="200" />
+                        <span class="form__input-error"></span>
+                    </section>
+                    <button class="popup__save form__submit" type="submit">Сохранить</button>
                 </form>
             </div>
         </div>
@@ -57,10 +67,18 @@
             <div class="popup__content">
                 <button class="popup__close close-popup" type="button"></button>
                 <h2 class="popup__title">Новое место</h2>
-                <form action="add" name="place" class="popup-place__form">
-                    <input type="text" name="place-input" class="popup__input popup__input_type_place" placeholder="Название">
-                    <input type="text" name="image-input" class="popup__input popup__input_type_image" placeholder="Ссылка на картинку">
-                    <button class="popup__save" type="submit">Сохранить</button>
+                <form action="add" name="place" class="form popup-place__form" novalidate>
+                    <section class="form__section">
+                        <input type="text" name="place-input" class="form__input popup__input popup__input_type_place"
+                            placeholder="Название" minlength="2" maxlength="30" />
+                        <span class="form__input-error"></span>
+                    </section>
+                    <section class="form__section">
+                        <input type="url" name="image-input" class="form__input popup__input popup__input_type_image"
+                            placeholder="Ссылка на картинку" />
+                        <span class="form__input-error"></span>
+                        <button class="popup__save form__submit" type="submit">Сохранить</button>
+                    </section>
                 </form>
             </div>
         </div>
@@ -70,13 +88,17 @@
         <div class="popup__body">
             <div class="popup-image__fullscreen">
                 <button class="popup__close close-popup" type="button"></button>
-                <form action="popup" name="edit" class="popup-image__form">
-                    <img class="popup-image__picture">
-                    <p type="text" name="place-input" class="popup-image__caption">Архыз</p>
+                <form action="popup" name="edit" class="form popup-image__form">
+                    <img class="popup-image__picture" />
+                    <p type="text" name="place-input" class="popup-image__caption">
+                        Архыз
+                    </p>
                 </form>
             </div>
         </div>
     </div>
     <script src="./script.js"></script>
+    <script src="./validate.js"></script>
 </body>
+
 </html>

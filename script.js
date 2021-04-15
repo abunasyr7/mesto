@@ -59,7 +59,7 @@ popupPlaceClose.addEventListener("click", () => closeModal(popupPlace));
 popupImageClose.addEventListener("click", () => closeModal(popupImage));
 popupClose.addEventListener("click", () => closeModal(popup));
 popupForm.addEventListener("submit", submitProfileForm);
-popupPlaceForm.addEventListener("submit", submitCardForm);
+// popupPlaceForm.addEventListener("submit", submitCardForm);
 
 function createCard(link, name) {
   const elementTemplate = elementsTemplate
