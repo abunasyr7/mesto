@@ -32,9 +32,17 @@ function openModal(modal) {
   });
 }
 
+document.addEventListener('keydown', keyHandlers);
+
+function keyHandlers(event) {
+  if (event.key === 'Escape') {
+    const openedPopup = document.querySelector('.popup_open');
+    closeModal(openedPopup);
+  }
+}
 
 function closeModal(modal) {
-  modal.classList.remove("popup_open");
+  modal.classList.remove("popup_open")
 }
 
 function openProfileModal() {
