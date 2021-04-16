@@ -1,83 +1,68 @@
-const showInputError = (inputElement, errorMessage) => {
-  const formSection = inputElement.closest(".form__section");
-  const errorElement = formSection.querySelector(".form__input-error");
+//Находим обе формы в DOM.
+const formUser = document.querySelector('.form[name="user"]');
+const formPlace = document.querySelector('.form[name="place"]');
 
-  errorElement.textContent = errorMessage;
-  errorElement.classList.add("form__input-error_active");
-};
+//Добавляем слушателя на форму formPlace.
+//Слушатель сабмита формы.
+formPlace.addEventListener('submit', handleFormSubmit);
+// Слушатель ввода на полях формы.
+// Используя механизм делегирования событий, слушаем сразу все поля ввода на форме.
+formPlace.addEventListener('input', function (event) {
+  // Поле ввода, на котором произошло изменение.
+  const input = event.target;
+  // Устанавливаем кастомные тексты ошибок.
+  setCustomError(input);
+  // Записываем текст ошибок в специальные контейнеры под каждым полем.
+  setFieldError(input);
+  // Включаем или выключаем кнопку отправки формы.
+  setSubmitButtonState(formPlace);
+});
 
-const hideInputError = (inputElement) => {
-  const formSection = inputElement.closest(".form__section");
-  const errorElement = formSection.querySelector(".form__input-error");
-  errorElement.textContent = "";
-  errorElement.classList.remove("form__input-error_active");
-};
+//Функция-коллбэк, которая обрабатывает событие отправки формы.
+function handleFormSubmit(event) {
+  event.preventDefault();
+  // Форма - элемент, на котором было *установлено* событие, поэтому используем `event.currentTarget`.
+  const form = event.currentTarget;
+  // Если форма валидна, то сбросим её.
+  const isValid = form.checkValidity();
+}
 
-const setEventListeners = (formElement) => {
-  formElement.addEventListener("submit", (event) => {
-    event.preventDefault();
-  });
+/* Функция для копирования текста ошибки из свойства поля ввода в span под ним. */
+function setFieldError(field) {
+  // span, куда будем класть ошибку, у нас всегда находится сразу после поля ввода.
+  // Поэтому простейшим способом его найти в документе будет взять следующий элемент после инпута.
+  const span = field.nextElementSibling;
+  // Возьмём `validationMessage` из инпута и переложим его в span.
+  span.textContent = field.validationMessage;
+}
 
-  const inputList = Array.from(formElement.querySelectorAll(".form__input"));
-  const buttonElement = formElement.querySelector(".form__submit");
+/*Функция для изменения состояния кнопки отправки формы */
+function setSubmitButtonState(form) {
+  const button = formPlace.querySelector('.popup__save');
+  const isValid = formPlace.checkValidity();
+  if (isValid) {
+    button.removeAttribute('disabled');
+    popupPlaceForm.addEventListener("submit", submitCardForm);
+  } else {
+    button.setAttribute('disabled', true);
+  }
+}
 
-  inputList.forEach((inputElement) => {
-    inputElement.addEventListener("input", (event) => {
-      checkInputValidity(formElement, inputElement);
-      toggleButtonState(inputList, buttonElement);
-    });
-  });
+/* Функция для установки кастомных текстов ошибок при одной из стандартных ошибок валидации формы. */
+function setCustomError(input) {
+  const validity = input.validity;
 
-  const toggleButtonState = (inputList, buttonElement) => {
-    const hasNotValidInput = inputList.some(
-      (inputElement) => !inputElement.validity.valid
-    );
+  // Устанавливаем validity.customError в false
+  input.setCustomValidity('');
 
-    if (hasNotValidInput) {
-      buttonElement.setAttribute("disabled", true);
-    } else {
-      buttonElement.removeAttribute("disabled");
-    }
-  };
+  // Если сработало ограничение на `minlength` или `maxlength`, установим свой текст ошибки.
+  if (validity.tooShort || validity.tooLong || validity.valueMissing) {
+    input.setCustomValidity("Вы пропустили это поле.");
+  }
 
-  const getErrorMessage = (inputElement) => {
-    const defaultErrorHandler = (inputElement) => {
-        if (inputElement.validity.valueMissing){
-            return 'Вы пропустили это поле.'
-        }
-    };
-    const urlErrorHandler = (inputElement) => {
-        if (inputElement.validity.typeMismatch) {
-            return "Введите адрес сайта.";
-        }
-    };
-    const errorHandlers = {
-        url: urlErrorHandler,
-        DEFAULT: defaultErrorHandler,
-    }
+  // Если сработало ограничение по установленному типу элемента, и тип - ссылка, то выведем соответствующую ошибку.
+  else if (validity.typeMismatch && input.type === 'url') {
+    input.setCustomValidity('Введите адрес сайта.');
+  }
+}
 
-    const inputName = inputElement.name;
-    const errorHandler = errorHandlers[inputName] || errorHandlers.DEFAULT;
-
-    return errorHandler(inputElement);
-  };
-
-  const checkInputValidity = (formElement, inputElement) => {
-    const isValid = inputElement.validity.valid;
-
-    if (!isValid) {
-      const errorMessage = getErrorMessage(inputElement);
-      showInputError(inputElement, errorMessage);
-    } else {
-      hideInputError(inputElement);
-      popupPlaceForm.addEventListener("submit", submitCardForm);
-    }
-  };
-};
-
-const enableValidation = () => {
-  const formList = Array.from(document.querySelectorAll(".form"));
-  formList.forEach(setEventListeners);
-};
-
-enableValidation();

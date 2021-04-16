@@ -45,7 +45,7 @@
             <div class="popup__content">
                 <button class="popup__close close-popup" type="button"></button>
                 <h2 class="popup__title">Редактировать профиль</h2>
-                <form action="popup" name="edit" class="form popup__form" novalidate>
+                <form action="popup" name="user" class="form popup__form" novalidate>
                     <section class="form__section">
                         <input type="text" name="name-input" class="form__input popup__input popup__input_type_name"
                             minlength="2" maxlength="40" />
@@ -70,14 +70,14 @@
                 <form action="add" name="place" class="form popup-place__form" novalidate>
                     <section class="form__section">
                         <input type="text" name="place-input" class="form__input popup__input popup__input_type_place"
-                            placeholder="Название" minlength="2" maxlength="30" />
+                            placeholder="Название" minlength="2" maxlength="30" required/>
                         <span class="form__input-error"></span>
                     </section>
                     <section class="form__section">
                         <input type="url" name="image-input" class="form__input popup__input popup__input_type_image"
-                            placeholder="Ссылка на картинку" />
+                            placeholder="Ссылка на картинку" required/>
                         <span class="form__input-error"></span>
-                        <button class="popup__save form__submit" type="submit">Сохранить</button>
+                        <button class="popup__save form__submit" type="submit" disabled>Сохранить</button>
                     </section>
                 </form>
             </div>
