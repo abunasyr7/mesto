@@ -1,7 +1,14 @@
-//Находим обе формы в DOM.
-const formUser = document.querySelector('.form[name="user"]');
-const formPlace = document.querySelector('.form[name="place"]');
+const validationConfig = {
+  inputSelector: '.popup__input',
+  button: '.popup__save',
+  formUser: '.form[name="user"]',
+  formPlace: '.form[name="place"]',
+  formInput: '.form__input'
+};
 
+const formInput = document.querySelector(validationConfig.formInput);
+
+const formUser = document.querySelector(validationConfig.formUser);
 formUser.addEventListener('submit', handleFormSubmit);
 formUser.addEventListener('input', function (event) {
   const input = event.target;
@@ -11,7 +18,7 @@ formUser.addEventListener('input', function (event) {
 });
 
 
-
+const formPlace = document.querySelector(validationConfig.formPlace);
 //Добавляем слушателя на форму formPlace.
 //Слушатель сабмита формы.
 formPlace.addEventListener('submit', handleFormSubmit);
@@ -47,8 +54,8 @@ function setFieldError(field) {
 }
 
 /*Функция для изменения состояния кнопки отправки формы */
-function setSubmitButtonState(form) {
-  const button = formPlace.querySelector('.popup__save');
+function setSubmitButtonState() {
+  const button = formPlace.querySelector(validationConfig.button);
   const isValid = formPlace.checkValidity();
   if (isValid) {
     button.removeAttribute('disabled');
@@ -83,12 +90,13 @@ function setDefaultError(input) {
     const current = input.value.length;
     const min = input.getAttribute('minlength');
     const max = input.getAttribute('maxlength');
+    input.classList.add('form__input')
     input.setCustomValidity(`Строка слишком короткая. Введено ${current} символов, а должно быть от ${min} до ${max}`);
   }
 }
 
 function setSubmitButtonStateProfile(form) {
-  const button = formUser.querySelector('.popup__save');
+  const button = formUser.querySelector(validationConfig.formUser);
   const isValid = formUser.checkValidity();
   if (isValid) {
     button.removeAttribute('disabled');
