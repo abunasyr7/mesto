@@ -2,6 +2,16 @@
 const formUser = document.querySelector('.form[name="user"]');
 const formPlace = document.querySelector('.form[name="place"]');
 
+formUser.addEventListener('submit', handleFormSubmit);
+formUser.addEventListener('input', function (event) {
+  const input = event.target;
+  setDefaultError(input);
+  setFieldError(input);
+  setSubmitButtonStateProfile(formUser);
+});
+
+
+
 //Добавляем слушателя на форму formPlace.
 //Слушатель сабмита формы.
 formPlace.addEventListener('submit', handleFormSubmit);
@@ -66,3 +76,24 @@ function setCustomError(input) {
   }
 }
 
+function setDefaultError(input) {
+  const validity = input.validity;
+  input.setCustomValidity('');
+  if (validity.tooShort || validity.tooLong || validity.valueMissing) {
+    const current = input.value.length;
+    const min = input.getAttribute('minlength');
+    const max = input.getAttribute('maxlength');
+    input.setCustomValidity(`Строка слишком короткая. Введено ${current} символов, а должно быть от ${min} до ${max}`);
+  }
+}
+
+function setSubmitButtonStateProfile(form) {
+  const button = formUser.querySelector('.popup__save');
+  const isValid = formUser.checkValidity();
+  if (isValid) {
+    button.removeAttribute('disabled');
+    popupForm.addEventListener("submit", submitProfileForm);
+  } else {
+    button.setAttribute('disabled', true);
+  }
+}

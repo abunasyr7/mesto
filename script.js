@@ -25,7 +25,13 @@ const elementsTemplate = document.querySelector(".elements-container").content;
 
 function openModal(modal) {
   modal.classList.add("popup_open");
+  modal.addEventListener('click', e => {
+    if(!e.target.closest('.popup__content')) {
+      closeModal(e.target.closest('.popup'));
+    }
+  });
 }
+
 
 function closeModal(modal) {
   modal.classList.remove("popup_open");
@@ -58,7 +64,7 @@ elementAddButton.addEventListener("click", () => openModal(popupPlace));
 popupPlaceClose.addEventListener("click", () => closeModal(popupPlace));
 popupImageClose.addEventListener("click", () => closeModal(popupImage));
 popupClose.addEventListener("click", () => closeModal(popup));
-popupForm.addEventListener("submit", submitProfileForm);
+// popupForm.addEventListener("submit", submitProfileForm);
 // popupPlaceForm.addEventListener("submit", submitCardForm);
 
 function createCard(link, name) {
