@@ -42,7 +42,8 @@ function keyHandlers(event) {
 }
 
 function closeModal(modal) {
-  modal.classList.remove("popup_open")
+  modal.classList.remove("popup_open");
+  formPlace.reset();
 }
 
 function openProfileModal() {

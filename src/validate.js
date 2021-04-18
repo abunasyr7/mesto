@@ -75,11 +75,15 @@ function setCustomError(input) {
   // Если сработало ограничение на `minlength` или `maxlength`, установим свой текст ошибки.
   if (validity.tooShort || validity.tooLong || validity.valueMissing) {
     input.setCustomValidity("Вы пропустили это поле.");
+    input.classList.add('form__input_type_error');
   }
 
   // Если сработало ограничение по установленному типу элемента, и тип - ссылка, то выведем соответствующую ошибку.
   else if (validity.typeMismatch && input.type === 'url') {
     input.setCustomValidity('Введите адрес сайта.');
+    input.classList.add('form__input_type_error');
+  } else {
+    input.classList.remove('form__input_type_error');
   }
 }
 
@@ -90,8 +94,10 @@ function setDefaultError(input) {
     const current = input.value.length;
     const min = input.getAttribute('minlength');
     const max = input.getAttribute('maxlength');
-    input.classList.add('form__input')
+    input.classList.add('form__input_type_error');
     input.setCustomValidity(`Строка слишком короткая. Введено ${current} символов, а должно быть от ${min} до ${max}`);
+  } else {
+    input.classList.remove('form__input_type_error');
   }
 }
 
