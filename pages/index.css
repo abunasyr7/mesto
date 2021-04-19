@@ -40,3 +40,4 @@
 @import url(../blocks/popup-image/__picture/popup-image__picture.css);
 @import url(../blocks/form/__section/form__section.css);
 @import url(../blocks/form/__input-error/form__input-error.css);
+@import url(../blocks/form/__input/_type/form__input_type_error.css);
