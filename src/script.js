@@ -26,14 +26,15 @@ const elementsTemplate = document.querySelector(".elements-container").content;
 
 function openModal(modal) {
   modal.classList.add("popup_open");
-  modal.addEventListener('click', e => {
-    if(!e.target.closest('.popup__content')) {
-      closeModal(e.target.closest('.popup'));
-    }
-  });
+  modal.addEventListener('click', closePopupByOverlay);
+  document.addEventListener('keydown', keyHandlers);
 }
 
-document.addEventListener('keydown', keyHandlers);
+function closePopupByOverlay(e) {
+  if (!e.target.closest('.popup__content')) {
+    closeModal(e.target.closest('.popup'));
+  }
+}
 
 function keyHandlers(event) {
   if (event.key === 'Escape') {
@@ -44,7 +45,8 @@ function keyHandlers(event) {
 
 function closeModal(modal) {
   modal.classList.remove("popup_open");
-  formPlace.reset();
+  modal.removeEventListener('click', closePopupByOverlay);
+  document.removeEventListener('keydown', keyHandlers);
 }
 
 function openProfileModal() {
@@ -67,11 +69,16 @@ function submitCardForm(e) {
   const createdCard = createCard(inputImage, inputValue);
   elements.prepend(createdCard);
   closeModal(popupPlace);
+  formPlace.reset();
+  setSubmitButtonState(formPlace);
 }
 
 profileEditButton.addEventListener("click", openProfileModal);
 elementAddButton.addEventListener("click", () => openModal(popupPlace));
-popupPlaceClose.addEventListener("click", () => closeModal(popupPlace));
+popupPlaceClose.addEventListener("click", () => {
+  closeModal(popupPlace);
+  formPlace.reset();
+});
 popupImageClose.addEventListener("click", () => closeModal(popupImage));
 popupClose.addEventListener("click", () => closeModal(popup));
 // popupForm.addEventListener("submit", submitProfileForm);
@@ -98,9 +105,8 @@ function createCard(link, name) {
     .querySelector(".element__image")
     .addEventListener("click", (e) => {
       openModal(popupImage);
-
       picture.src = link;
-
+      picture.alt = name;
       caption.textContent = name;
     });
   return elementTemplate;
