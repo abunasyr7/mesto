@@ -23,6 +23,8 @@ const popupInputTypeImage = popupPlaceForm.querySelector(
   ".popup__input_type_image"
 );
 const elementsTemplate = document.querySelector(".elements-container").content;
+const elementTemplate = elementsTemplate.querySelector(".element");
+const elementImage =   elementTemplate.querySelector(".element__image");
 
 function openModal(modal) {
   modal.classList.add("popup_open");
@@ -81,16 +83,16 @@ popupPlaceClose.addEventListener("click", () => {
 });
 popupImageClose.addEventListener("click", () => closeModal(popupImage));
 popupClose.addEventListener("click", () => closeModal(popup));
-// popupForm.addEventListener("submit", submitProfileForm);
-// popupPlaceForm.addEventListener("submit", submitCardForm);
+popupForm.addEventListener("submit", submitProfileForm);
+popupPlaceForm.addEventListener("submit", submitCardForm);
 
 function createCard(link, name) {
   const elementTemplate = elementsTemplate
     .querySelector(".element")
     .cloneNode(true);
-  elementTemplate.querySelector(".element__image").src = link;
+  elementImage.src = link;
   elementTemplate.querySelector(".element__text").textContent = name;
-  elementTemplate.querySelector(".element__image").alt = name;
+  elementImage.alt = name;
   elementTemplate
     .querySelector(".element__delete")
     .addEventListener("click", function (e) {
