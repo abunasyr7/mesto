@@ -25,6 +25,7 @@ const popupInputTypeImage = popupPlaceForm.querySelector(
 const elementsTemplate = document.querySelector(".elements-container").content;
 const elementTemplate = elementsTemplate.querySelector(".element");
 const elementImage =   elementTemplate.querySelector(".element__image");
+const formPlace = document.querySelector('form[name="place"]');
 
 function openModal(modal) {
   modal.classList.add("popup_open");
