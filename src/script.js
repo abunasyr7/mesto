@@ -1,3 +1,5 @@
+import Card from './Card.js';
+
 const popup = document.querySelector(".popup");
 const profileEditButton = document.querySelector(".profile__edit-button");
 const popupClose = document.querySelector(".popup__close");
@@ -87,37 +89,38 @@ popupClose.addEventListener("click", () => closeModal(popup));
 popupForm.addEventListener("submit", submitProfileForm);
 popupPlaceForm.addEventListener("submit", submitCardForm);
 
-function createCard(link, name) {
-  const elementTemplate = elementsTemplate
-    .querySelector(".element")
-    .cloneNode(true);
-  elementImage.src = link;
-  elementTemplate.querySelector(".element__text").textContent = name;
-  elementImage.alt = name;
-  elementTemplate
-    .querySelector(".element__delete")
-    .addEventListener("click", function (e) {
-      e.target.closest(".element").remove();
-    });
-  elementTemplate
-    .querySelector(".element__like")
-    .addEventListener("click", (e) => {
-      e.target.classList.toggle("element__like_type_active");
-    });
-  elementTemplate
-    .querySelector(".element__image")
-    .addEventListener("click", (e) => {
-      openModal(popupImage);
-      picture.src = link;
-      picture.alt = name;
-      caption.textContent = name;
-    });
-  return elementTemplate;
-}
+// function createCard(link, name) {
+//   const elementTemplate = elementsTemplate
+//     .querySelector(".element")
+//     .cloneNode(true);
+
+//   elementImage.src = link;
+//   elementTemplate.querySelector(".element__text").textContent = name;
+//   elementImage.alt = name;
+//   elementTemplate
+//     .querySelector(".element__delete")
+//     .addEventListener("click", function (e) {
+//       e.target.closest(".element").remove();
+//     });
+//   elementTemplate
+//     .querySelector(".element__like")
+//     .addEventListener("click", (e) => {
+//       e.target.classList.toggle("element__like_type_active");
+//     });
+//   elementTemplate
+//     .querySelector(".element__image")
+//     .addEventListener("click", (e) => {
+//       openModal(popupImage);
+//       picture.src = link;
+//       picture.alt = name;
+//       caption.textContent = name;
+//     });
+//   return elementTemplate;
+// }
 
 function addCard(element) {
-  const createdCard = createCard(element.link, element.name);
-  elements.append(createdCard);
+  const newCard = new Card(element, openModal);
+  elements.append(newCard.generateCard());
 }
 
 initialCards.forEach(addCard);
