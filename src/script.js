@@ -1,4 +1,7 @@
 import Card from './Card.js';
+// import initialCards from './initial-cards.js';
+import FormValidator from './FormValidator.js';
+import {validationConfig} from './FormValidator.js';
 
 const popup = document.querySelector(".popup");
 const profileEditButton = document.querySelector(".profile__edit-button");
@@ -125,4 +128,10 @@ function addCard(element) {
 
 initialCards.forEach(addCard);
 
+
+const formList = Array.from(document.querySelectorAll(".form"));
+formList.forEach((form) => {
+  const formValidator = new FormValidator(validationConfig, form);
+  formValidator.enableValidation();
+});
 
