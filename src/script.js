@@ -70,15 +70,15 @@ function submitProfileForm(e) {
   closeModal(popup);
 }
 
+
 function submitCardForm(e) {
   e.preventDefault();
-  inputValue = popupInputTypePlace.value;
-  inputImage = popupInputTypeImage.value;
-  const createdCard = createCard(inputImage, inputValue);
+  const inputValue = popupInputTypePlace.value;
+  const inputImage = popupInputTypeImage.value;
+  const createdCard = addCard();
   elements.prepend(createdCard);
   closeModal(popupPlace);
   formPlace.reset();
-  setSubmitButtonState(formPlace);
 }
 
 profileEditButton.addEventListener("click", openProfileModal);
@@ -123,7 +123,8 @@ popupPlaceForm.addEventListener("submit", submitCardForm);
 
 function addCard(element) {
   const newCard = new Card(element, openModal);
-  elements.append(newCard.generateCard());
+  const generatedCard = newCard.generateCard();
+  elements.append(generatedCard);
 }
 
 initialCards.forEach(addCard);
