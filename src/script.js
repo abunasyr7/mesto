@@ -73,10 +73,10 @@ function submitProfileForm(e) {
 
 function submitCardForm(e) {
   e.preventDefault();
-  const inputValue = popupInputTypePlace.value;
-  const inputImage = popupInputTypeImage.value;
-  const createdCard = addCard();
-  elements.prepend(createdCard);
+  const name = popupInputTypePlace.value;
+  const link = popupInputTypeImage.value;
+  addCard({name, link});
+
   closeModal(popupPlace);
   formPlace.reset();
 }
@@ -121,10 +121,11 @@ popupPlaceForm.addEventListener("submit", submitCardForm);
 //   return elementTemplate;
 // }
 
+
 function addCard(element) {
   const newCard = new Card(element, openModal);
   const generatedCard = newCard.generateCard();
-  elements.append(generatedCard);
+  elements.prepend(generatedCard);
 }
 
 initialCards.forEach(addCard);
