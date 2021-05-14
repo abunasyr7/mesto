@@ -2,6 +2,7 @@ import Card from './Card.js';
 // import initialCards from './initial-cards.js';
 import FormValidator from './FormValidator.js';
 import {validationConfig} from './FormValidator.js';
+import {initialCards} from './initial-cards.js';
 
 const popup = document.querySelector(".popup");
 const profileEditButton = document.querySelector(".profile__edit-button");
