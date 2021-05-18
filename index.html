@@ -48,15 +48,15 @@
                 <form action="#" name="user" class="form popup__form" novalidate>
                     <section class="form__section">
                         <input type="text" name="name-input" class="form__input popup__input popup__input_type_name"
-                            minlength="2" maxlength="40" required/>
+                            minlength="2" maxlength="40" placeholder="Имя" required/>
                         <span class="form__input-error"></span>
                     </section>
                     <section class="form__section">
                         <input type="text" name="job-input" class="form__input popup__input popup__input_type_job"
-                            minlength="2" maxlength="200" required/>
+                            minlength="2" maxlength="200" placeholder="Вид деятельности" required/>
                         <span class="form__input-error"></span>
                     </section>
-                    <button class="popup__save form__submit" type="submit">Сохранить</button>
+                    <button class="popup__save form__submit" type="submit" value="Reset">Сохранить</button>
                 </form>
             </div>
         </div>
@@ -77,7 +77,7 @@
                         <input type="url" name="image-input" class="form__input popup__input popup__input_type_image"
                             placeholder="Ссылка на картинку" required/>
                         <span class="form__input-error"></span>
-                        <button class="popup__save form__submit" type="submit" disabled>Сохранить</button>
+                        <button class="popup__save form__submit" type="submit" value="Reset"     disabled>Сохранить</button>
                     </section>
                 </form>
             </div>
@@ -97,9 +97,7 @@
             </div>
         </div>
     </div>
-    <!-- <script src="./src/initial-cards.js"></script> -->
     <script type="module" src="./src/index.js"></script>
-    <!-- <script type="module" src="./src/validate.js"></script> -->
 </body>
 
 </html>

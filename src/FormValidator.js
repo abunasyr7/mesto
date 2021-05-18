@@ -1,14 +1,20 @@
 export const validationConfig = {
-  button: '.popup__save',
-  inputSelector: ".form__input"    
+  formSelector: '.form',
+  inputSelector: ".form__input",
+  submitButtonSelector: '.popup__save',
+  inputErrorClass: ".form__input_type_error",
+  inputErrorMessage: ".form__input-error",
 };
+
 
 export default class FormValidator {
         constructor(validationConfig, form) {
             this._validationConfig = validationConfig;
             this._form = form;
-            this._button = this._form.querySelector(validationConfig.button);
+            this._button = this._form.querySelector(validationConfig.submitButtonSelector);
             this._inputSelector = this._form.querySelector(validationConfig.inputSelector);
+            this._inputList = Array.from(this._form.querySelectorAll(validationConfig.inputSelector));
+            this._errorList = Array.from(this._form.querySelectorAll(validationConfig.inputErrorMessage));
     }
 
     _setEventListeners = () => {
@@ -20,14 +26,14 @@ export default class FormValidator {
         const input = event.target;
         this._setCustomError(input);
         this._setFieldError(input);
-        this._setSubmitButtonState(input.closest('.form'));
+        this._setSubmitButtonState(input.closest(validationConfig.formSelector));
     }
 
 
     _setSubmitButtonState = () => {
       const isValid = this._form.checkValidity();
       if (isValid) {
-        this._button.removeAttribute("disabled");
+        this._button.removeAttribute("disabled", false);
       } else {
         this._button.setAttribute("disabled", true);
       }
@@ -38,12 +44,25 @@ export default class FormValidator {
         const isValid = this._form.checkValidity();
     }
 
+    _showError(input) {
+      this._errorList.forEach((element) => {
+        element.classList.add('form__input_type_error');
+      })
+    }
+
+    _hideError(input) {
+      this._errorList.forEach((element) => {
+        element.classList.remove('form__input_type_error');
+      })
+  }
+
     _setCustomError = (input) => {
         const validity = input.validity;
         input.setCustomValidity("");
+        // this._hideError(input, this._validationConfig);
         if (validity.valueMissing) {
           input.setCustomValidity("Вы пропустили это поле.");
-          input.classList.add("form__input_type_error");
+          // this._showError(input)
         }
         else if (validity.tooShort || validity.tooLong) {
           const current = input.value.length;
@@ -52,13 +71,13 @@ export default class FormValidator {
           input.setCustomValidity(
             `Строка слишком короткая. Введено ${current} символов, а должно быть от ${min} до ${max}`
           );
-          input.classList.add("form__input_type_error");
+          // this._showError(input, this._validationConfig)
         }
         else if (validity.typeMismatch && input.type === "url") {
           input.setCustomValidity("Здесь должна быть ссылка");
-          input.classList.add("form__input_type_error");
+          
         } else {
-          input.classList.remove("form__input_type_error");
+          // this._hideError(input, this._validationConfig);
         }
     }
 
@@ -73,6 +92,22 @@ export default class FormValidator {
         });
 
         this._setEventListeners();
+    }
+
+    removeInputError() {
+      this._inputList.forEach((input) => {
+        // this._hideError()
+        input.nextElementSibling.textContent = ''
+      });
+      this._button.setAttribute("disabled", true);
+    }
+
+    removeInputErrorProfile() {
+      this._inputList.forEach((input) => {
+        // this._hideError()
+        input.nextElementSibling.textContent = ''
+      });
+      this._button.removeAttribute("disabled", true);
     }
 
 }
