@@ -44,25 +44,12 @@ export default class FormValidator {
         const isValid = this._form.checkValidity();
     }
 
-    _showError(input) {
-      this._errorList.forEach((element) => {
-        element.classList.add('form__input_type_error');
-      })
-    }
-
-    _hideError(input) {
-      this._errorList.forEach((element) => {
-        element.classList.remove('form__input_type_error');
-      })
-  }
 
     _setCustomError = (input) => {
         const validity = input.validity;
         input.setCustomValidity("");
-        // this._hideError(input, this._validationConfig);
         if (validity.valueMissing) {
           input.setCustomValidity("Вы пропустили это поле.");
-          // this._showError(input)
         }
         else if (validity.tooShort || validity.tooLong) {
           const current = input.value.length;
@@ -71,13 +58,11 @@ export default class FormValidator {
           input.setCustomValidity(
             `Строка слишком короткая. Введено ${current} символов, а должно быть от ${min} до ${max}`
           );
-          // this._showError(input, this._validationConfig)
         }
         else if (validity.typeMismatch && input.type === "url") {
           input.setCustomValidity("Здесь должна быть ссылка");
           
         } else {
-          // this._hideError(input, this._validationConfig);
         }
     }
 
@@ -96,7 +81,6 @@ export default class FormValidator {
 
     removeInputError() {
       this._inputList.forEach((input) => {
-        // this._hideError()
         input.nextElementSibling.textContent = ''
       });
       this._button.setAttribute("disabled", true);
@@ -104,7 +88,6 @@ export default class FormValidator {
 
     removeInputErrorProfile() {
       this._inputList.forEach((input) => {
-        // this._hideError()
         input.nextElementSibling.textContent = ''
       });
       this._button.removeAttribute("disabled", true);
