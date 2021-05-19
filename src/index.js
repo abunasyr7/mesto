@@ -27,8 +27,7 @@ const popupInputTypePlace = popupPlaceForm.querySelector(
 const popupInputTypeImage = popupPlaceForm.querySelector(
   ".popup__input_type_image"
 );
-const elementsTemplate = document.querySelector(".elements-container").content;
-const elementTemplate = elementsTemplate.querySelector(".element");
+
 
 
 const validatorAddCard = new FormValidator(validationConfig, popupPlaceForm);
