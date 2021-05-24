@@ -1,8 +1,3 @@
-const UserInfoConfig ={
-    nameInfo = '.profile__info-name',
-    jobInfo = '.profile__info-text'
-}
-
 export default class UserInfo {
     constructor(name, job) {
         this._name = name;
@@ -10,14 +5,14 @@ export default class UserInfo {
     }
 
     getUserInfo() {
-        this._name = document.querySelector(UserInfoConfig.nameInfo);
-        this._job = document.querySelector(UserInfoConfig.jobInfo);
+        const name = this._name.textContent;
+        const job = this._job.textContent;
         validatorEditProfile.removeInputErrorProfile();
+        return {name, job};
     }
 
-    setUserInfo(e) {
-        e.preventDefault();
-        document.querySelector(UserInfoConfig.nameInfo) = this._name;
-        document.querySelector(UserInfoConfig.jobInfo) = this._job;
+    setUserInfo(info) {
+        this._name.textContent = info.name;
+        this._job.textContent = info.job;
     }
 }

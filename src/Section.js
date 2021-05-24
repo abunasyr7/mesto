@@ -1,19 +1,20 @@
-cardSelector = document.querySelector(".elements-container").content;
-
-class Section {
+export default class Section {
     constructor({items, renderer}, cardSelector) {
         this._items = items;
         this._renderer = renderer;
-        this._cardSelector = cardSelector;
+        this._card = document.querySelector(cardSelector);
     }
+
+
+    addItem(element) {
+        this._card.prepend(element);
+    }
+
+
 
     createItems() {
         this._items.forEach(item =>{
             this._renderer(item);
         }) 
-    }
-
-    addItem(element) {
-        this._cardSelector.prepend(element);
     }
 }
