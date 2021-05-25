@@ -7,7 +7,6 @@ export default class UserInfo {
     getUserInfo() {
         const name = this._name.textContent;
         const job = this._job.textContent;
-        validatorEditProfile.removeInputErrorProfile();
         return {name, job};
     }
 

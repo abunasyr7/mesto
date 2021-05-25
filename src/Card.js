@@ -1,7 +1,7 @@
-import {showImage} from './index.js'
+// import {showImage} from './index.js'
 
 export default class Card {
-    constructor(data, cardSelector) {
+    constructor(data, {handleCardClick} ,cardSelector) {
         this._name = data.name;
         this._link = data.link;
         this._image = '.element__image';
@@ -10,7 +10,7 @@ export default class Card {
         this._text = '.element__text';
         this._cardSelector = cardSelector;
         this._popupImage = document.querySelector(".popup-image");
-        
+        this._handleCardClick = handleCardClick;
     }
 
     _getTemplate() {
@@ -25,7 +25,7 @@ export default class Card {
         this._element.querySelector(this._deleteButton).addEventListener("click", this._deleteCard);
         
         this._element.querySelector(this._image).addEventListener('click', () => {
-            showImage(this._name, this._link);
+            this._handleCardClick(this._name, this._link);
         })
     }
 

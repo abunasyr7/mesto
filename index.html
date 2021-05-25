@@ -40,6 +40,8 @@
             <p class="footer__text">© 2020 Mesto Russia</p>
         </footer>
     </div>
+
+
     <div class="popup popup_profile">
         <div class="popup__body">
             <div class="popup__content">
@@ -47,12 +49,12 @@
                 <h2 class="popup__title">Редактировать профиль</h2>
                 <form action="#" name="user" class="form popup__form" novalidate>
                     <section class="form__section">
-                        <input type="text" name="name-input" class="form__input popup__input popup__input_type_name"
+                        <input type="text" name="name" class="form__input popup__input popup__input_type_name"
                             minlength="2" maxlength="40" placeholder="Имя" required/>
                         <span class="form__input-error"></span>
                     </section>
                     <section class="form__section">
-                        <input type="text" name="job-input" class="form__input popup__input popup__input_type_job"
+                        <input type="text" name="job" class="form__input popup__input popup__input_type_job"
                             minlength="2" maxlength="200" placeholder="Вид деятельности" required/>
                         <span class="form__input-error"></span>
                     </section>
@@ -62,6 +64,7 @@
         </div>
     </div>
 
+
     <div class="popup popup-place">
         <div class="popup__body">
             <div class="popup__content">
@@ -69,12 +72,12 @@
                 <h2 class="popup__title">Новое место</h2>
                 <form action="#" name="place" class="form popup-place__form" novalidate>
                     <section class="form__section">
-                        <input type="text" name="place-input" class="form__input popup__input popup__input_type_place"
+                        <input type="text" name="place" class="form__input popup__input popup__input_type_place"
                             placeholder="Название" minlength="2" maxlength="30" required/>
                         <span class="form__input-error"></span>
                     </section>
                     <section class="form__section">
-                        <input type="url" name="image-input" class="form__input popup__input popup__input_type_image"
+                        <input type="url" name="image" class="form__input popup__input popup__input_type_image"
                             placeholder="Ссылка на картинку" required/>
                         <span class="form__input-error"></span>
                         <button class="popup__save form__submit" type="submit" value="Reset"     disabled>Сохранить</button>
@@ -83,10 +86,11 @@
             </div>
         </div>
     </div>
+    
 
     <div class="popup popup-image">
         <div class="popup__body">
-            <div class="popup__content popup-image__fullscreen">
+            <div class=" popup-image__fullscreen">
                 <button class="popup__close close-popup" type="button"></button>
                 <form action="#" name="edit" class="form popup-image__form">
                     <img class="popup-image__picture" alt="#" src="#"/>

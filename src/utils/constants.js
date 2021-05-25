@@ -1,5 +1,7 @@
 export const popup = document.querySelector(".popup");
-export const profileEditButton = document.querySelector(".profile__edit-button");
+export const profileEditButton = document.querySelector(
+  ".profile__edit-button"
+);
 export const popupClose = document.querySelector(".popup__close");
 export const profileInfoName = document.querySelector(".profile__info-name");
 export const popupForm = document.querySelector(".popup__form");
@@ -12,12 +14,12 @@ export const popupPlace = document.querySelector(".popup-place");
 export const popupPlaceClose = popupPlace.querySelector(".popup__close");
 export const popupImage = document.querySelector(".popup-image");
 export const popupImageClose = popupImage.querySelector(".popup__close");
-export const popupInput = '.popup__input'
+export const popupInput = ".popup__input";
 export const picture = ".popup-image__picture";
 export const caption = ".popup-image__caption";
-export const popupPlaceForm = ".popup-place__form";
-export const popupContent = ".popup__content";
-export const closePopup = ".close-popup";
+export const popupPlaceForm = document.querySelector(".popup-place__form");
+export const popupContent = "popup__content";
+export const closePopup = "close-popup";
 // export const popupInputTypePlace = popupPlaceForm.querySelector(
 //   ".popup__input_type_place"
 // );
@@ -25,38 +27,12 @@ export const closePopup = ".close-popup";
 //   ".popup__input_type_image"
 // );
 
+export const validationConfig = {
+  formSelector: ".form",
+  inputSelector: ".form__input",
+  submitButtonSelector: ".popup__save",
+  inputErrorClass: ".form__input_type_error",
+  inputErrorMessage: ".form__input-error",
+};
+
 export const cardSelector = ".elements-container";
-
-
-export const  initialCards = [
-    {
-        name: "Архыз",
-        link:
-            "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg",
-    },
-    {
-        name: "Челябинская область",
-        link:
-            "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg",
-    },
-    {
-        name: "Иваново",
-        link:
-            "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg",
-    },
-    {
-        name: "Камчатка",
-        link:
-            "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg",
-    },
-    {
-        name: "Холмогорский район",
-        link:
-            "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg",
-    },
-    {
-        name: "Байкал",
-        link:
-            "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg",
-    },
-];
