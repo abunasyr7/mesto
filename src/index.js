@@ -1,3 +1,4 @@
+import '../styles/index.css'; // добавьте импорт главного файла стилей
 import Card from "./Card.js";
 import FormValidator from "./FormValidator.js";
 import { initialCards } from "./utils/initialCards.js";
@@ -16,6 +17,7 @@ import Section from "./Section.js";
 import PopupWithImage from "./PopupWithImage.js";
 import UserInfo from "./UserInfo.js";
 import PopupWithForm from "./PopupWithForm.js";
+
 
 const validatorAddCard = new FormValidator(
   validationConfig,
