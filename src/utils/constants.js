@@ -19,13 +19,7 @@ export const picture = ".popup-image__picture";
 export const caption = ".popup-image__caption";
 export const popupPlaceForm = document.querySelector(".popup-place__form");
 export const popupContent = "popup__content";
-export const closePopup = "close-popup";
-// export const popupInputTypePlace = popupPlaceForm.querySelector(
-//   ".popup__input_type_place"
-// );
-// export const popupInputTypeImage = popupPlaceForm.querySelector(
-//   ".popup__input_type_image"
-// );
+export const closePopupBtn = "close-popup";
 
 export const validationConfig = {
   formSelector: ".form",
@@ -34,5 +28,21 @@ export const validationConfig = {
   inputErrorClass: ".form__input_type_error",
   inputErrorMessage: ".form__input-error",
 };
+
+export const validationCard = {
+  image: '.element__image',
+  likeBtn: '.element__like',
+  deleteBtn: '.element__delete',
+  text: '.element__text',
+}
+
+export const validationIndex = {
+  formAddCard: ".popup-place__form",
+  popupWithImage: ".popup-image",
+  elements: ".elements",
+  popupWithProfile:'.popup_profile',
+  popupWithNewCard: '.popup-place',
+}
+
 
 export const cardSelector = ".elements-container";

@@ -1,4 +1,4 @@
-import { closePopup } from "./utils/constants.js";
+import { closePopupBtn } from "../utils/constants.js";
 
 export default class Popup {
   constructor(popupSelector) {
@@ -28,7 +28,7 @@ export default class Popup {
       if (e.target.classList.contains("popup__body")) {
         this.close();
       }
-      if (e.target.classList.contains(closePopup)) {
+      if (e.target.classList.contains(closePopupBtn)) {
         this.close();
       }
     });

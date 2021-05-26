@@ -1,15 +1,15 @@
-// import {showImage} from './index.js'
+import {validationCard, popupImage } from '../utils/constants.js'
 
 export default class Card {
     constructor(data, {handleCardClick} ,cardSelector) {
         this._name = data.name;
         this._link = data.link;
-        this._image = '.element__image';
-        this._likeButton = '.element__like';
-        this._deleteButton = '.element__delete';
-        this._text = '.element__text';
+        this._image = validationCard.image;
+        this._likeButton = validationCard.likeBtn;
+        this._deleteButton = validationCard.deleteBtn;
+        this._text = validationCard.text;
         this._cardSelector = cardSelector;
-        this._popupImage = document.querySelector(".popup-image");
+        this._popupImage = popupImage;
         this._handleCardClick = handleCardClick;
     }
 
