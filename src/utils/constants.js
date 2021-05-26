@@ -44,5 +44,11 @@ export const validationIndex = {
   popupWithNewCard: '.popup-place',
 }
 
+export const validationPopup ={
+  openPopup: "popup_open",
+  openPopupElement: document.querySelector(".popup_open"),
+  bodyOfPopup: "popup__body",
+}
+
 
 export const cardSelector = ".elements-container";
