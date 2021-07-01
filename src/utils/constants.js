@@ -34,7 +34,7 @@ export const validationCard = {
   likeBtn: '.element__like',
   deleteBtn: '.element__delete',
   text: '.element__text',
-}
+};
 
 export const validationIndex = {
   formAddCard: ".popup-place__form",
@@ -42,13 +42,13 @@ export const validationIndex = {
   elements: ".elements",
   popupWithProfile:'.popup_profile',
   popupWithNewCard: '.popup-place',
-}
+};
 
 export const validationPopup ={
   openPopup: "popup_open",
   openPopupElement: document.querySelector(".popup_open"),
   bodyOfPopup: "popup__body",
-}
+};
 
 
 export const cardSelector = ".elements-container";

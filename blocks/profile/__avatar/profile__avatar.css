@@ -2,12 +2,18 @@
     margin: 0;
     width: 120px;
     height: 120px;
-    background-image: url(../../../images/image.svg);
     background-position: center;
     border-radius: 70%;
     margin-right: 30px;
+    position: relative;
 }
 
+.profile__avatar:hover .middle {
+    opacity: 1;
+}
+.profile__avatar:hover .avatar {
+    opacity: 0.3;
+}
 
 @media screen and (max-width: 690px) {
     .profile__avatar {

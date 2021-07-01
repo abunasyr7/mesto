@@ -6,18 +6,23 @@
     <title>Webpack</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- <link rel="stylesheet" href="./pages/index.css" /> -->
+    <!-- <link rel="stylesheet" href="./pages/index.css" type="text/css" /> -->
     <title>Mesto</title>
 </head>
 
 <body class="body">
     <div class="page">
         <header class="header">
-            <img src="./images/logo.svg" alt="Логотип" class="header__logo" />
+            <img src="<%=require('./images/logo.svg')%>" alt="Логотип" class="header__logo" />
         </header>
         <section class="profile">
             <div class="profile__info-section">
-                <div class="profile__avatar"></div>
+                <div class="profile__avatar">
+                    <img src="<%=require('./images/image.svg')%>" alt="Avatar" width="120" height="120"class="avatar">
+                    <div class="middle">
+                        <div class="profile__image"></div>
+                    </div>
+                </div>
                 <div class="profile__info">
                     <h1 class="profile__info-name">Жак-Ив Кусто</h1>
                     <p class="profile__info-text">Исследователь океана</p>
@@ -32,7 +37,10 @@
                 <img src="./images/kirill-pershin-1088404-unsplash.png" alt="Карачаевск" class="element__image" />
                 <div class="element__name">
                     <h2 class="element__text">Карачаевск</h2>
-                    <button class="element__like" type="button"></button>
+                    <div class="element__like-section">
+                        <button class="element__like" type="button"></button>
+                        <p class="element__number">1</p>
+                    </div>
                 </div>
                 <button class="element__delete" type="button"></button>
             </div>
@@ -91,7 +99,7 @@
 
     <div class="popup popup-image">
         <div class="popup__body">
-            <div class=" popup-image__fullscreen">
+            <div class="popup-image__fullscreen">
                 <button class="popup__close close-popup" type="button"></button>
                 <form action="#" name="edit" class="form popup-image__form">
                     <img class="popup-image__picture" alt="#" src="#"/>
@@ -99,6 +107,15 @@
                         Архыз
                     </p>
                 </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="popup popup-delete">
+        <div class="popup__body">
+            <div class="popup__content">
+                <h2>Вы уверены?</h2>
+                <button class="popup__save form__submit" type="submit" value="Reset">Да</button>
             </div>
         </div>
     </div>
