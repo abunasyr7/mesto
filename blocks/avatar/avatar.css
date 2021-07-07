@@ -1,9 +1,10 @@
 .avatar {
     display: block;
-    width: 120px;
+    width: 100%;
     border-radius: 70%;
     margin-right: 30px;
     opacity: 1;
+    object-fit: cover;
 }
 
 .avatar:hover {

@@ -20,6 +20,7 @@ export const caption = ".popup-image__caption";
 export const popupPlaceForm = document.querySelector(".popup-place__form");
 export const popupContent = "popup__content";
 export const closePopupBtn = "close-popup";
+export const avatar = document.querySelector(".avatar");
 
 export const validationConfig = {
   formSelector: ".form",

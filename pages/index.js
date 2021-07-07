@@ -3,16 +3,16 @@ import Card from "../src/components/Card.js";
 import FormValidator from "../src/components/FormValidator.js";
 import { initialCards } from "../src/utils/initialCards.js";
 import {
-  cardSelector,
-  popupForm,
-  profileInfoName,
-  profileInfoText,
-  validationConfig,
-  profileEditButton,
-  elementAddButton,
-  popupName,
-  popupJob,
-  validationIndex
+    cardSelector,
+    popupForm,
+    profileInfoName,
+    profileInfoText,
+    validationConfig,
+    profileEditButton,
+    elementAddButton,
+    popupName,
+    popupJob,
+    validationIndex, avatar
 } from "../src/utils/constants.js";
 import Section from "../src/components/Section.js";
 import PopupWithImage from "../src/components/PopupWithImage.js";
@@ -30,6 +30,16 @@ validatorAddCard.enableValidation();
 validatorEditProfile.enableValidation();
 
 const image = new PopupWithImage(validationIndex.popupWithImage);
+
+ const newCards = fetch('https://mesto.nomoreparties.co/v1/cohort-25/cards',{
+     headers: {
+         authorization: '1174dadd-027e-4ffe-b733-ac48b2285022'
+     }
+ })
+    .then(res => res.json())
+     .then ((data) => {
+         console.log(data);
+     });
 
 const cardList = new Section(
   {
@@ -68,7 +78,7 @@ const popupAddCard = new PopupWithForm(validationIndex.popupWithNewCard, {
       const element = addCard({
           name: data.place,
           link: data.image
-      })
+      });
     cardList.addItem(element, 'prepend');
     popupAddCard.close();
   }
@@ -91,8 +101,20 @@ function addCard(data) {
 profileEditButton.addEventListener("click", openProfilePopup);
 elementAddButton.addEventListener("click", () => {
   validatorAddCard.removeInputError();
-  popupAddCard.open()
+  popupAddCard.open();
 });
 image.setEventListeners();
 popupProfile.setEventListeners();
 popupAddCard.setEventListeners();
+
+    fetch('https://nomoreparties.co/v1/cohort-25/users/me', {
+        headers: {
+            authorization: '1174dadd-027e-4ffe-b733-ac48b2285022'
+        }
+    })
+        .then((res) => res.json())
+        .then((res) => {
+            avatar.src = res.avatar;
+            profileInfoName.textContent = res.name;
+            profileInfoText.textContent = res.about;
+        });

@@ -1,4 +1,4 @@
-import {validationCard, popupImage } from '../utils/constants.js'
+import {validationCard } from '../utils/constants.js';
 
 export default class Card {
     constructor(data, {handleCardClick} ,cardSelector) {
@@ -9,7 +9,6 @@ export default class Card {
         this._deleteButton = validationCard.deleteBtn;
         this._text = validationCard.text;
         this._cardSelector = cardSelector;
-        this._popupImage = popupImage;
         this._handleCardClick = handleCardClick;
     }
 
@@ -26,7 +25,7 @@ export default class Card {
         
         this._element.querySelector(this._image).addEventListener('click', () => {
             this._handleCardClick(this._name, this._link);
-        })
+        });
     }
 
     _likeCard(e) {
@@ -47,7 +46,7 @@ export default class Card {
     generateCard() {
         this._element = this._getTemplate();
         this._element.querySelector(this._image).src = this._link;
-        this._element.querySelector(this._image).alt = this._link;
+        this._element.querySelector(this._image).alt = this._name;
         this._element.querySelector(this._text).textContent = this._name;
         this._setEventListeners();
         return this._element;
