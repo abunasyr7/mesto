@@ -1,7 +1,12 @@
 import {validationCard } from '../utils/constants.js';
 
 export default class Card {
-    constructor(data, {handleCardClick} ,cardSelector) {
+    constructor({name, link, owner, _id, likes}, {
+        handleCardClick,
+        handleCardDislike,
+        handleCardLike,
+        handleCardDelete,
+    } ,cardSelector, userId) {
         this._name = data.name;
         this._link = data.link;
         this._image = validationCard.image;

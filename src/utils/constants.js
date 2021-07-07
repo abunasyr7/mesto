@@ -21,6 +21,9 @@ export const popupPlaceForm = document.querySelector(".popup-place__form");
 export const popupContent = "popup__content";
 export const closePopupBtn = "close-popup";
 export const avatar = document.querySelector(".avatar");
+export const popupDelete = document.querySelector(".popup-delete");
+export const avatarUploadContainer = document.querySelector(".popup-avatar");
+export const popAvatar = ".popup-avatar";
 
 export const validationConfig = {
   formSelector: ".form",
