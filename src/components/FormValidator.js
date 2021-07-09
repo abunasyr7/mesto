@@ -1,4 +1,4 @@
-import {validationConfig} from '../utils/constants.js'
+import {validationConfig} from '../utils/constants.js';
 
 export default class FormValidator {
   constructor(validationConfig, form) {
@@ -77,7 +77,7 @@ export default class FormValidator {
 
   removeInputError() {
     this._inputList.forEach((input) => {
-      input.nextElementSibling.textContent = "";
+      input.textContent = "";
     });
     this._button.setAttribute("disabled", true);
   }

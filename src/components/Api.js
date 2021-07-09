@@ -20,7 +20,12 @@ export default class Api {
 
     editUserData(name, about) {
         return fetch(`${this._url}/users/me`, {
-            headers :this._headers
+            method: "PATCH",
+            headers :this._headers,
+            body: JSON.stringify({
+                name: name,
+                about: about
+            })
         })
             .then(this._check);
     }
@@ -31,7 +36,7 @@ export default class Api {
             headers: this._headers,
             body: JSON.stringify({
                 name: name,
-                about: about
+                link: link,
             })
         })
             .then(this._check);
@@ -54,7 +59,8 @@ export default class Api {
     }
 
     removeLike(cardId) {
-        return fetch(`${this._url}/cards/likes/${cardId}`, {
+        return fetch(`${this._url}/cards/likes/${cardId}`,
+            {
             method: "DELETE",
             headers: this._headers
         })
@@ -62,6 +68,7 @@ export default class Api {
     }
 
     updateAvatar(link) {
+        console.log({link});
         return fetch(`${this._url}/users/me/avatar`, {
             method: "PATCH",
             headers: this._headers,

@@ -12,7 +12,7 @@ import {
     elementAddButton,
     popupName,
     popupJob,
-    validationIndex, avatar, popupDelete, avatarUploadContainer, popAvatar
+    validationIndex, avatar, popupDelete, avatarUploadContainer, popAvatar, popupAvatarEditButton
 } from "../src/utils/constants.js";
 import Section from "../src/components/Section.js";
 import PopupWithImage from "../src/components/PopupWithImage.js";
@@ -26,7 +26,9 @@ const validatorAddCard = new FormValidator(
     document.querySelector(validationIndex.formAddCard)
 );
 const validatorEditProfile = new FormValidator(validationConfig, popupForm);
-const validatorAvatarUpload = new FormValidator(validationConfig, avatarUploadContainer);
+const validatorAvatarUpload = new FormValidator(
+    validationConfig,
+    document.querySelector(validationIndex.formAvatarCard));
 
 const api = new Api({
     url: 'https://mesto.nomoreparties.co/v1/cohort-25',
@@ -55,12 +57,12 @@ const cardList = new Section(
   validationIndex.elements
 );
 
-cardList.createItems();
 
 /* Переменая для текста работы куда будет добавляться новый текст */
 const profileTitle = profileInfoName,
   profileText = profileInfoText,
-  info = new UserInfo(profileTitle, profileText);
+    profileAva = avatar,
+  info = new UserInfo(profileTitle, profileText, profileAva);
 
 //Функция открытия попапа редактирования
 function openProfilePopup() {
@@ -88,7 +90,7 @@ const popupProfile = new PopupWithForm(validationIndex.popupWithProfile, {
 //Попап добавления карточки
 const popupAddCard = new PopupWithForm(validationIndex.popupWithNewCard, {
   handleSubmit: (data) => {
-    api.addCard(data.title, data.link)
+    api.addCard(data.place, data.image)
         .then(res => {
             const element = addCard(res);
             cardList.addItem(element, 'prepend');
@@ -101,10 +103,11 @@ const popupAddCard = new PopupWithForm(validationIndex.popupWithNewCard, {
 });
 
 //Попап удаления карточки
-const popupDel = new PopupDelete(popupDelete, {
+const popupDel = new PopupDelete(validationIndex.popupDelete, {
    handleSubmit: (cardId) => {
+       console.log("----------");
         api.cardDelete(cardId)
-            .then(data => {
+            .then((data) => {
                 popupDel.cardElement.remove();
                 popupDel.close();
             })
@@ -114,12 +117,12 @@ const popupDel = new PopupDelete(popupDelete, {
    }
 });
 
-const popupAvatar = new PopupWithForm(popAvatar, {
-   handleSubmit: ({link}) => {
-       api.updateAvatar(link)
+const popupAvatar = new PopupWithForm(validationIndex.popupAva, {
+   handleSubmit: ({avatar}) => {
+       api.updateAvatar(avatar)
            .then(({avatar}) => {
-               info.setAvatar(link);
-               popAvatar.close();
+               info.setAvatar(avatar);
+               popupAvatar.close();
            })
            .catch(err => {
                console.log(err);
@@ -129,6 +132,7 @@ const popupAvatar = new PopupWithForm(popAvatar, {
 
 function addCard(data) {
     const userId = info.getId();
+
     const newCard = new Card(
     data,
     {
@@ -141,8 +145,8 @@ function addCard(data) {
       handleCardLike: (cardId) => {
           api.setLike(cardId)
               .then(({likes}) => {
-                  card._likes = likes;
-                  card.updateLikeCount();
+                  newCard._likes = likes;
+                  newCard.updateLikeCount();
               })
               .catch(err => {
                   console.log(err);
@@ -151,8 +155,8 @@ function addCard(data) {
       handleCardDislike: (cardId) => {
           api.removeLike(cardId)
               .then(({likes}) => {
-                  card._likes = likes;
-                  card.updateLikeCount();
+                  newCard._likes = likes;
+                  newCard.updateLikeCount();
               })
               .catch(err => {
                   console.log(err);
@@ -161,9 +165,29 @@ function addCard(data) {
     },
     cardSelector, userId
   );
-  const cardElement = newCard.generateCard();
+
+    const cardElement = newCard.generateCard();
   return cardElement;
 }
+
+Promise.all([
+    api.getUserInfo()
+        .then((data) => {
+            info.setUserInfo(data.name, data.about, data._id);
+            info.setAvatar(data.avatar);
+        })
+        .catch((err) => {
+            console.log(err);
+        }),
+    api.getInitialCards()
+        .then(data => {
+            cardList.renderer(data);
+        })
+        .catch((err) => {
+            console.log(err);
+        })
+])
+    .catch(error => console.log(error));
 
 profileEditButton.addEventListener("click", openProfilePopup);
 elementAddButton.addEventListener("click", () => {
@@ -173,15 +197,11 @@ elementAddButton.addEventListener("click", () => {
 image.setEventListeners();
 popupProfile.setEventListeners();
 popupAddCard.setEventListeners();
+popupAvatarEditButton.addEventListener('click', () => {
+    validatorAvatarUpload.removeInputError();
+    popupAvatar.open();
+});
 
-    fetch('https://nomoreparties.co/v1/cohort-25/users/me', {
-        headers: {
-            authorization: '1174dadd-027e-4ffe-b733-ac48b2285022'
-        }
-    })
-        .then((res) => res.json())
-        .then((res) => {
-            avatar.src = res.avatar;
-            profileInfoName.textContent = res.name;
-            profileInfoText.textContent = res.about;
-        });
+popupDel.setEventListeners();
+popupAvatar.setEventListeners();
+

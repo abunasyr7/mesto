@@ -5,6 +5,7 @@ export default class UserInfo {
         this._avatar = avatar;
     }
 
+
     getUserInfo() {
         const name = this._name.textContent;
         const job = this._job.textContent;

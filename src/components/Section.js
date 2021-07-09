@@ -1,17 +1,20 @@
+import Card from "./Card";
+import {elements} from "../utils/constants";
+
 export default class Section {
-  constructor({ items, renderer }, cardSelector) {
-    this._items = items;
+  constructor({renderer}, cardSelector) {
     this._renderer = renderer;
-    this._card = document.querySelector(cardSelector);
+    this._container = document.querySelector(cardSelector);
   }
 
-  addItem(element) {
-    this._card.prepend(element);
-  }
-
-  createItems() {
-    this._items.forEach((item) => {
+  renderer(data) {
+    data.forEach(item => {
       this._renderer(item);
     });
   }
+
+  addItem(element, toAppend) {
+    this._container[toAppend](element);
+  }
+
 }

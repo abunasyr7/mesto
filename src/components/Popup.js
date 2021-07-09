@@ -2,17 +2,17 @@ import { closePopupBtn, validationPopup } from "../utils/constants.js";
 
 export default class Popup {
   constructor(popupSelector) {
-    this._popupSelector = document.querySelector(popupSelector);
+    this.popupSelector = document.querySelector(popupSelector);
     this._handleEscClose = this._handleEscClose.bind(this);
   }
 
   open() {
-    this._popupSelector.classList.add(validationPopup.openPopup);
+    this.popupSelector.classList.add(validationPopup.openPopup);
     document.addEventListener("keydown", this._handleEscClose);
   }
 
   close() {
-    this._popupSelector.classList.remove(validationPopup.openPopup);
+    this.popupSelector.classList.remove(validationPopup.openPopup);
     document.removeEventListener("keydown", this._handleEscClose);
   }
 
@@ -24,7 +24,7 @@ export default class Popup {
   }
 
   setEventListeners() {
-    this._popupSelector.addEventListener("click", (e) => {
+    this.popupSelector.addEventListener("click", (e) => {
       if (e.target.classList.contains(validationPopup.bodyOfPopup)) {
         this.close();
       }
