@@ -5,16 +5,16 @@ import { popupInput, validationConfig } from '../utils/constants.js';
 export default class PopupWithForm extends Popup {
     constructor(popupSelector, {handleSubmit}) {
         super(popupSelector);
-        this._form = this.popupSelector.querySelector(validationConfig.formSelector);
+        this._form = this.popup.querySelector(validationConfig.formSelector);
         this._handleSubmit = handleSubmit;        
     }
 
     renderLoading() {
-        const prevTextBtn =  this.popupSelector.querySelector('.popup__save').textContent;
-        this.popupSelector.querySelector('.popup__save').textContent = 'Сохранение...';
+        const prevTextBtn =  this.popup.querySelector('.popup__save').textContent;
+        this.popup.querySelector('.popup__save').textContent = 'Сохранение...';
 
         setTimeout(() => {
-            this.popupSelector.querySelector('.popup__save').textContent = prevTextBtn;
+            this.popup.querySelector('.popup__save').textContent = prevTextBtn;
         }, 1500);
     }
 

@@ -84,13 +84,17 @@ export default class Card {
     }
 
     _likeCard() {
-        this._handleCardLike(this._id);
-        this._element.querySelector(this._likeButton).classList.toggle("element__like_type_active");
+        console.log(this._handleCardLike)
+        console.log(this._id)
+        this._handleCardLike(this._id).then(() => {
+            this._element.querySelector(this._likeButton).classList.toggle("element__like_type_active");
+        });
     }
 
     _dislikeCard() {
-        this._handleCardDislike(this._id);
-        this._element.querySelector(this._likeButton).classList.toggle("element__like_type_active");
+        this._handleCardDislike(this._id).then(() => {
+            this._element.querySelector(this._likeButton).classList.toggle("element__like_type_active");
+        });
     }
 
     _deleteCard() {

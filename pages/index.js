@@ -94,11 +94,11 @@ const popupAddCard = new PopupWithForm(validationIndex.popupWithNewCard, {
         .then(res => {
             const element = addCard(res);
             cardList.addItem(element, 'prepend');
+            popupAddCard.close();
         })
         .catch(err => {
             console.log(err);
         });
-      popupAddCard.close();
   }
 });
 
@@ -171,23 +171,17 @@ function addCard(data) {
 }
 
 Promise.all([
-    api.getUserInfo()
-        .then((data) => {
-            info.setUserInfo(data.name, data.about, data._id);
-            info.setAvatar(data.avatar);
-        })
-        .catch((err) => {
-            console.log(err);
-        }),
-    api.getInitialCards()
-        .then(data => {
-            cardList.renderer(data);
-        })
-        .catch((err) => {
-            console.log(err);
-        })
+    api.getUserInfo(),
+    api.getInitialCards(),
 ])
-    .catch(error => console.log(error));
+        .then(([userData,initialCards]) => {
+            info.setUserInfo(userData.name, userData.about, userData._id);
+            info.setAvatar(userData.avatar);
+            cardList.renderer(initialCards);
+        })
+    .catch((err) => {
+        console.log(err);
+    });
 
 profileEditButton.addEventListener("click", openProfilePopup);
 elementAddButton.addEventListener("click", () => {
