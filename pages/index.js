@@ -143,7 +143,7 @@ function addCard(data) {
           popupDel.open(cardId, elem);
       },
       handleCardLike: (cardId) => {
-          api.setLike(cardId)
+          return api.setLike(cardId)
               .then(({likes}) => {
                   newCard._likes = likes;
                   newCard.updateLikeCount();
@@ -153,7 +153,7 @@ function addCard(data) {
               });
       },
       handleCardDislike: (cardId) => {
-          api.removeLike(cardId)
+          return api.removeLike(cardId)
               .then(({likes}) => {
                   newCard._likes = likes;
                   newCard.updateLikeCount();

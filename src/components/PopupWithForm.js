@@ -13,10 +13,12 @@ export default class PopupWithForm extends Popup {
         const prevTextBtn =  this.popup.querySelector('.popup__save').textContent;
         this.popup.querySelector('.popup__save').textContent = 'Сохранение...';
 
+
         setTimeout(() => {
             this.popup.querySelector('.popup__save').textContent = prevTextBtn;
         }, 1500);
     }
+
 
     _getInputValues() {
         this._valueArray = {};

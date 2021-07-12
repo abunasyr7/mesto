@@ -55,7 +55,12 @@ export default class Api {
             method: "PUT",
             headers: this._headers
         })
-            .then(this._check);
+            .then((res) => {
+            if (res.ok) {
+                return res.json();
+            }
+            return Promise.reject(`Ошибка ${res.status}`);
+        });
     }
 
     removeLike(cardId) {
